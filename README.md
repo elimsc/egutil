@@ -1,0 +1,2 @@
+# fastutil
+fasthttp util package.
