@@ -1,12 +1,18 @@
 # gocrud
 
-`controllers.CrudController`
+`CrudController`
 
 usage:
 ```go
-var db sqlbuilder.Database
+var db sqlbuilder.Database // https://upper.io/db.v3
+var err error
 
-var categoryController = controllers.CrudController{
+db, err = mysql.Open(settings)
+if err != nil {
+    logrus.Fatal("数据库连接失败, ", err)
+}
+
+var categoryController = gocrud.CrudController{
     Sess:      db,
     GetParam:  chi.URLParam,
     Columns:   []string{"id", "name"},
