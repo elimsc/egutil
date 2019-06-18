@@ -1,4 +1,4 @@
-package controllers
+package gocrud
 
 import (
 	"encoding/json"
