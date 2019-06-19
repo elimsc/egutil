@@ -18,14 +18,9 @@ type CrudController struct {
 	TableName string
 }
 
-var table db.Collection
-
 // Table 表操作
 func (c *CrudController) Table() db.Collection {
-	if table == nil {
-		table = c.Sess.Collection(c.TableName)
-	}
-	return table
+	return c.Sess.Collection(c.TableName)
 }
 
 // JSON 如果err为空，返回json结果
@@ -126,7 +121,8 @@ func (c *CrudController) Create(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		panic(err)
 	}
-	err = c.Table().InsertReturning(&model)
+
+	_, err = c.Table().Insert(&model)
 
 	c.JSON(w, err, map[string]interface{}{
 		"status": 0,
