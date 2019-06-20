@@ -1,22 +1,18 @@
 # gocrud
 
-`CrudController`
-
-usage:
+## Usage:
 ```go
-var db sqlbuilder.Database // https://upper.io/db.v3
-var err error
+var r = chi.NewRouter()
+var sess sqlbuilder.Database
+```
 
-db, err = mysql.Open(settings)
-if err != nil {
-    logrus.Fatal("数据库连接失败, ", err)
-}
-
+`CrudController`
+```go
 var categoryController = gocrud.CrudController{
-    Sess:      db,
+    Sess:      sess,
     GetParam:  chi.URLParam,
     Columns:   []string{"id", "name"},
-    TableName: "gl_category",
+    TableName: "category",
 }
 
 r.Route("/categories", func(r chi.Router) {
@@ -27,4 +23,16 @@ r.Route("/categories", func(r chi.Router) {
     r.Delete("/{id}", categoryController.Delete)
     r.Get("/all", categoryController.All)
 })
+```
+
+`CrudDb*`
+```go
+gocrud.CrudDBAll(r, sess)
+gocrud.CrudDBOnly(r, sess, []string{"demo"})
+gocrud.CrudDBExcept(r, sess, []string{"demo"})
+```
+
+`CrudTable`
+```go
+gocrud.CrudTable(r, sess, "demo", "/hi/demo")
 ```

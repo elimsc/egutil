@@ -10,10 +10,11 @@ import (
 	db "upper.io/db.v3"
 )
 
+//TODO: 目前如果表中有存在NULL值的记录，查询会panic，sql.NullString的问题是返回结果的类型变了
+
 // CrudController Crud操作集合
 type CrudController struct {
 	GetParam  func(*http.Request, string) string
-	Columns   []string
 	Sess      sqlbuilder.Database
 	TableName string
 }
@@ -97,6 +98,7 @@ func (c *CrudController) Pagination(w http.ResponseWriter, r *http.Request) {
 		"total":  total,
 		"offset": offset,
 		"list":   result,
+		"limit":  limit,
 	})
 }
 
