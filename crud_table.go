@@ -24,5 +24,5 @@ func CrudTable(r chi.Router, sess sqlbuilder.Database, table string, prefix stri
 		r.Get("/all", controller.All)
 		r.Post("/update", controller.Update)
 	})
-	logrus.Info(fmt.Sprintf("table: [%s], match route: [%s]", table, prefix))
+	logrus.Info(fmt.Sprintf("auto mount: [%s => %s]", table, prefix))
 }
