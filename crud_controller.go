@@ -10,8 +10,6 @@ import (
 	db "upper.io/db.v3"
 )
 
-//TODO: 目前如果表中有存在NULL值的记录，查询会panic，sql.NullString的问题是返回结果的类型变了
-
 // CrudController Crud操作集合
 type CrudController struct {
 	GetParam  func(*http.Request, string) string
@@ -48,7 +46,7 @@ func (c *CrudController) All(w http.ResponseWriter, r *http.Request) {
 		orderby = r.FormValue("orderby")
 	}
 
-	var result = []map[string]string{}
+	var result = []map[string]*string{}
 	err = c.Table().Find().OrderBy(orderby).All(&result)
 	c.JSON(w, err, result)
 }
@@ -64,7 +62,7 @@ func (c *CrudController) Pagination(w http.ResponseWriter, r *http.Request) {
 		orderby string
 	)
 
-	var result = []map[string]string{}
+	var result = []map[string]*string{}
 
 	orderby = "-id"
 	offset, err = strconv.Atoi(r.FormValue("offset"))
@@ -105,7 +103,7 @@ func (c *CrudController) Pagination(w http.ResponseWriter, r *http.Request) {
 // One 根据id获取单个实例
 func (c *CrudController) One(w http.ResponseWriter, r *http.Request) {
 	var err error
-	var result = map[string]string{}
+	var result = map[string]*string{}
 
 	var id = c.GetParam(r, "id")
 
