@@ -45,4 +45,14 @@ gocrud.CrudDBExcept(r, sess, []string{"demo"})
 // }
 ```
 
+`FileServer`
+```go
+workDir, _ := os.Getwd()
+filesDir := filepath.Join(workDir, "files")
+gocrud.FileServer(r, "/files", http.Dir(filesDir))
+
+// same as
+gocurd.FileServerDir(r, "/files", "files")
+```
+
 
