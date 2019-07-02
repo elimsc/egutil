@@ -1,4 +1,4 @@
-package gocrud
+package egutil
 
 import (
 	"fmt"

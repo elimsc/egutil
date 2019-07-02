@@ -1,4 +1,4 @@
-package gocrud
+package egutil
 
 import (
 	"github.com/go-chi/chi"
