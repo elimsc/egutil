@@ -125,7 +125,7 @@ func (c *CrudController) Create(w http.ResponseWriter, r *http.Request) {
 	_, err = c.Table().Insert(&model)
 
 	c.JSON(w, err, map[string]interface{}{
-		"status": 0,
+		"code": 0,
 	})
 }
 
@@ -145,7 +145,7 @@ func (c *CrudController) Update(w http.ResponseWriter, r *http.Request) {
 	_, err = c.Sess.Update(c.TableName).Set(model).Where(db.Cond{"id": id}).Exec()
 
 	c.JSON(w, err, map[string]interface{}{
-		"status": 0,
+		"code": 0,
 	})
 }
 
@@ -156,6 +156,6 @@ func (c *CrudController) Delete(w http.ResponseWriter, r *http.Request) {
 
 	_, err = c.Sess.DeleteFrom(c.TableName).Where(db.Cond{"id": id}).Exec()
 	c.JSON(w, err, map[string]interface{}{
-		"status": 0,
+		"code": 0,
 	})
 }
