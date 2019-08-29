@@ -52,7 +52,7 @@ filesDir := filepath.Join(workDir, "files")
 egutil.FileServer(r, "/files", http.Dir(filesDir))
 
 // same as
-gocurd.FileServerDir(r, "/files", "files")
+egutil.FileServerDir(r, "/files", "files")
 ```
 
 
