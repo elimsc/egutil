@@ -1,4 +1,4 @@
-package egutil
+package egu
 
 import (
 	"encoding/json"

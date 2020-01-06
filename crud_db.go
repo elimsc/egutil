@@ -1,4 +1,4 @@
-package egutil
+package egu
 
 import (
 	"github.com/go-chi/chi"
