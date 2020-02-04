@@ -1,4 +1,4 @@
-# egutil
+# egu
 
 ## Usage:
 ```go
@@ -8,7 +8,7 @@ var sess sqlbuilder.Database  // see https://upper.io/db.v3
 
 `CrudController`
 ```go
-var categoryController = egutil.CrudController{
+var categoryController = egu.CrudController{
     Sess:      sess,
     GetParam:  chi.URLParam,
     TableName: "category",
@@ -26,7 +26,7 @@ r.Route("/categories", func(r chi.Router) {
 
 `CrudTable`
 ```go
-egutil.CrudTable(r, sess, "demo", "/hi/demo")
+egu.CrudTable(r, sess, "demo", "/hi/demo")
 // GET /hi/demo       list 
 // POST /hi/demo      create
 // GET /hi/demo/{id}  one
@@ -37,11 +37,11 @@ egutil.CrudTable(r, sess, "demo", "/hi/demo")
 
 `CrudDb*`
 ```go
-egutil.CrudDBAll(r, sess)
-egutil.CrudDBOnly(r, sess, []string{"demo"})
-egutil.CrudDBExcept(r, sess, []string{"demo"})
+egu.CrudDBAll(r, sess)
+egu.CrudDBOnly(r, sess, []string{"demo"})
+egu.CrudDBExcept(r, sess, []string{"demo"})
 // for _, table := range tables {
-//    egutil.CrudTable(r, sess, table, "/"+table)
+//    egu.CrudTable(r, sess, table, "/"+table)
 // }
 ```
 
@@ -49,10 +49,10 @@ egutil.CrudDBExcept(r, sess, []string{"demo"})
 ```go
 workDir, _ := os.Getwd()
 filesDir := filepath.Join(workDir, "files")
-egutil.FileServer(r, "/files", http.Dir(filesDir))
+egu.FileServer(r, "/files", http.Dir(filesDir))
 
 // same as
-egutil.FileServerDir(r, "/files", "files")
+egu.FileServerDir(r, "/files", "files")
 ```
 
 
