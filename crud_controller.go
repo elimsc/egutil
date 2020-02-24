@@ -22,20 +22,14 @@ func (c *CrudController) Table() db.Collection {
 	return c.Sess.Collection(c.TableName)
 }
 
-// JSON 如果err为空，返回json结果
-func (c *CrudController) JSON(w http.ResponseWriter, err error, data interface{}) {
-	if err == nil {
-		var jsonvalue []byte
-		jsonvalue, err = json.Marshal(data)
-		if err != nil {
-			panic(err)
-		} else {
-			w.Header().Set("Content-Type", "application/json")
-			w.Write(jsonvalue)
-		}
-	} else {
+// JSON 返回json结果
+func (c *CrudController) JSON(w http.ResponseWriter, data interface{}) {
+	jsonvalue, err := json.Marshal(data)
+	if err != nil {
 		panic(err)
 	}
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(jsonvalue)
 }
 
 // All 一次性获取所有数据 orderby=-id
@@ -48,7 +42,11 @@ func (c *CrudController) All(w http.ResponseWriter, r *http.Request) {
 
 	var result = []map[string]*string{}
 	err = c.Table().Find().OrderBy(orderby).All(&result)
-	c.JSON(w, err, result)
+	if err != nil {
+		panic(err)
+	}
+
+	c.JSON(w, result)
 }
 
 // Pagination 分页显示 , 默认offset=0, limit=10, where={"key": "value"}, orderby=-id
@@ -91,8 +89,11 @@ func (c *CrudController) Pagination(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 	total, err = c.Table().Find().Where(condition).Count()
+	if err != nil {
+		panic(err)
+	}
 
-	c.JSON(w, err, map[string]interface{}{
+	c.JSON(w, map[string]interface{}{
 		"total":  total,
 		"offset": offset,
 		"list":   result,
@@ -108,8 +109,11 @@ func (c *CrudController) One(w http.ResponseWriter, r *http.Request) {
 	var id = c.GetParam(r, "id")
 
 	err = c.Table().Find().Where(db.Cond{"id": id}).One(&result)
+	if err != nil {
+		panic(err)
+	}
 
-	c.JSON(w, err, result)
+	c.JSON(w, result)
 }
 
 // Create 新增实例
@@ -123,8 +127,11 @@ func (c *CrudController) Create(w http.ResponseWriter, r *http.Request) {
 	}
 
 	_, err = c.Table().Insert(&model)
+	if err != nil {
+		panic(err)
+	}
 
-	c.JSON(w, err, map[string]interface{}{
+	c.JSON(w, map[string]interface{}{
 		"code": 0,
 	})
 }
@@ -143,8 +150,11 @@ func (c *CrudController) Update(w http.ResponseWriter, r *http.Request) {
 	delete(model, "id")
 
 	_, err = c.Sess.Update(c.TableName).Set(model).Where(db.Cond{"id": id}).Exec()
+	if err != nil {
+		panic(err)
+	}
 
-	c.JSON(w, err, map[string]interface{}{
+	c.JSON(w, map[string]interface{}{
 		"code": 0,
 	})
 }
@@ -155,7 +165,11 @@ func (c *CrudController) Delete(w http.ResponseWriter, r *http.Request) {
 	var id = c.GetParam(r, "id")
 
 	_, err = c.Sess.DeleteFrom(c.TableName).Where(db.Cond{"id": id}).Exec()
-	c.JSON(w, err, map[string]interface{}{
+	if err != nil {
+		panic(err)
+	}
+
+	c.JSON(w, map[string]interface{}{
 		"code": 0,
 	})
 }
