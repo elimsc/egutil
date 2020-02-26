@@ -29,8 +29,8 @@ func FileServer(r chi.Router, path string, root http.FileSystem) {
 	}))
 }
 
-// FileServerDir 当前目录下的文件
-func FileServerDir(r chi.Router, path string, dir string) {
+// ServeStatic 当前目录下的文件
+func ServeStatic(r chi.Router, path string, dir string) {
 	workDir, _ := os.Getwd()
 	filesDir := filepath.Join(workDir, dir)
 	FileServer(r, path, http.Dir(filesDir))

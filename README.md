@@ -52,7 +52,7 @@ filesDir := filepath.Join(workDir, "files")
 egu.FileServer(r, "/files", http.Dir(filesDir))
 
 // same as
-egu.FileServerDir(r, "/files", "files")
+egu.ServeStatic(r, "/files", "files")
 ```
 
 
