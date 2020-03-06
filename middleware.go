@@ -2,6 +2,8 @@ package egu
 
 import "net/http"
 
+// https://gowebexamples.com/advanced-middleware/
+
 // Middleware type
 type Middleware func(http.HandlerFunc) http.HandlerFunc
 
