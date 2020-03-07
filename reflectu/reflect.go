@@ -19,9 +19,8 @@ func SetField(obj interface{}, name string, value interface{}) error {
 		return fmt.Errorf("Cannot set %s field value", name)
 	}
 
-	structFieldType := structFieldValue.Type()
 	val := reflect.ValueOf(value)
-	if structFieldType != val.Type() {
+	if structFieldValue.Type() != val.Type() {
 		return errors.New("Provided value type didn't match obj field type")
 	}
 
@@ -39,22 +38,3 @@ func Map2Struct(m map[string]interface{}, obj interface{}) error {
 	}
 	return nil
 }
-
-// func main() {
-// 	myData := map[string]interface{}{
-// 		"Name": "jiang",
-// 		"Age":  22,
-// 	}
-
-// 	type User struct {
-// 		Name string
-// 		Age  int
-// 	}
-// 	var user User
-// 	err := Map2Struct(myData, &user)
-// 	if err != nil {
-// 		fmt.Println(err)
-// 	}
-// 	fmt.Println(user.Name)
-// 	fmt.Println(user.Age)
-// }

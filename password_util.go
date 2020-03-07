@@ -6,7 +6,7 @@ import "golang.org/x/crypto/bcrypt"
 
 // HashPassword hash密码
 func HashPassword(password string) (string, error) {
-	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
+	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 0)
 	return string(bytes), err
 }
 
