@@ -2,9 +2,9 @@ package chiu
 
 import (
 	"fmt"
+	"log"
 
 	"github.com/go-chi/chi"
-	"github.com/sirupsen/logrus"
 	"upper.io/db.v3/lib/sqlbuilder"
 )
 
@@ -24,5 +24,5 @@ func CrudTable(r chi.Router, sess sqlbuilder.Database, table string, prefix stri
 		r.Get("/all", controller.All)
 		r.Post("/update", controller.Update)
 	})
-	logrus.Info(fmt.Sprintf("auto mount: [%s => %s]", table, prefix))
+	log.Println(fmt.Sprintf("auto mount: [%s => %s]", table, prefix))
 }
