@@ -1,14 +1,18 @@
 # egu
 
-## Usage:
+```
+$ go get https://github.com/elimsc/egu
+```
+
+## chiu:
 ```go
 var r = chi.NewRouter()
 var sess sqlbuilder.Database  // see https://upper.io/db.v3
 ```
 
-`CrudController`
+`chiu.CrudController`
 ```go
-var categoryController = egu.CrudController{
+var categoryController = chiu.CrudController{
     Sess:      sess,
     GetParam:  chi.URLParam,
     TableName: "category",
@@ -24,9 +28,9 @@ r.Route("/categories", func(r chi.Router) {
 })
 ```
 
-`CrudTable`
+`chiu.CrudTable`
 ```go
-egu.CrudTable(r, sess, "demo", "/hi/demo")
+chiu.CrudTable(r, sess, "demo", "/hi/demo")
 // GET /hi/demo       list 
 // POST /hi/demo      create
 // GET /hi/demo/{id}  one
@@ -35,24 +39,24 @@ egu.CrudTable(r, sess, "demo", "/hi/demo")
 // POST /hi/update   update
 ```
 
-`CrudDb*`
+`chiu.CrudDb*`
 ```go
-egu.CrudDBAll(r, sess)
-egu.CrudDBOnly(r, sess, []string{"demo"})
-egu.CrudDBExcept(r, sess, []string{"demo"})
+chiu.CrudDBAll(r, sess)
+chiu.CrudDBOnly(r, sess, []string{"demo"})
+chiu.CrudDBExcept(r, sess, []string{"demo"})
 // for _, table := range tables {
-//    egu.CrudTable(r, sess, table, "/"+table)
+//    chiu.CrudTable(r, sess, table, "/"+table)
 // }
 ```
 
-`FileServer`
+`chiu.FileServer`
 ```go
 workDir, _ := os.Getwd()
 filesDir := filepath.Join(workDir, "files")
-egu.FileServer(r, "/files", http.Dir(filesDir))
+chiu.FileServer(r, "/files", http.Dir(filesDir))
 
 // same as
-egu.ServeStatic(r, "/files", "files")
+chiu.ServeStatic(r, "/files", "files")
 ```
 
 

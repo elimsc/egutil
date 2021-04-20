@@ -1,4 +1,4 @@
-package egu
+package chiu
 
 import (
 	"github.com/go-chi/chi"
