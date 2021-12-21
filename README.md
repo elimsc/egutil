@@ -41,7 +41,7 @@ chie.CrudTable(r, sess, "demo", "/hi/demo")
 // POST /hi/update   update
 ```
 
-`chiu.CrudDb*`
+`chie.CrudDb*`
 ```go
 chie.CrudDBAll(r, sess)
 chie.CrudDBOnly(r, sess, []string{"demo"})
