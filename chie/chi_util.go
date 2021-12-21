@@ -1,4 +1,4 @@
-package chiu
+package chie
 
 import (
 	"net/http"

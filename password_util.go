@@ -1,4 +1,4 @@
-package egu
+package goe
 
 import "golang.org/x/crypto/bcrypt"
 

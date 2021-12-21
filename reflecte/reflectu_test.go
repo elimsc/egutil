@@ -1,9 +1,9 @@
-package reflectu_test
+package reflecte_test
 
 import (
 	"testing"
 
-	"github.com/elimsc/egu/reflectu"
+	"github.com/elimsc/goe/reflecte"
 )
 
 func TestSetField(t *testing.T) {
@@ -12,7 +12,7 @@ func TestSetField(t *testing.T) {
 		Age  int
 	}
 	u := User{Name: "u", Age: 100}
-	reflectu.SetField(&u, "Age", 20)
+	reflecte.SetField(&u, "Age", 20)
 	if u.Age != 20 {
 		t.Errorf("TestSetField() failed")
 	}
@@ -28,7 +28,7 @@ func TestMap2Struct(t *testing.T) {
 		"Age":  20,
 	}
 	var u User
-	reflectu.Map2Struct(u1, &u)
+	reflecte.Map2Struct(u1, &u)
 	if u.Name != "u" || u.Age != 20 {
 		t.Errorf("TestMap2Struct() failed")
 	}

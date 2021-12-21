@@ -1,4 +1,4 @@
-module github.com/elimsc/egu
+module github.com/elimsc/goe
 
 go 1.15
 

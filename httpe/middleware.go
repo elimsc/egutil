@@ -1,4 +1,4 @@
-package egu
+package httpe
 
 import "net/http"
 

@@ -1,18 +1,20 @@
-# egu
+# goe
+
+> Go extend.
 
 ```
-$ go get https://github.com/elimsc/egu
+$ go get https://github.com/elimsc/goe
 ```
 
-## chiu:
+## chie:
 ```go
 var r = chi.NewRouter()
 var sess sqlbuilder.Database  // see https://upper.io/db.v3
 ```
 
-`chiu.CrudController`
+`chie.CrudController`
 ```go
-var categoryController = chiu.CrudController{
+var categoryController = chie.CrudController{
     Sess:      sess,
     GetParam:  chi.URLParam,
     TableName: "category",
@@ -28,9 +30,9 @@ r.Route("/categories", func(r chi.Router) {
 })
 ```
 
-`chiu.CrudTable`
+`chie.CrudTable`
 ```go
-chiu.CrudTable(r, sess, "demo", "/hi/demo")
+chie.CrudTable(r, sess, "demo", "/hi/demo")
 // GET /hi/demo       list 
 // POST /hi/demo      create
 // GET /hi/demo/{id}  one
@@ -41,22 +43,22 @@ chiu.CrudTable(r, sess, "demo", "/hi/demo")
 
 `chiu.CrudDb*`
 ```go
-chiu.CrudDBAll(r, sess)
-chiu.CrudDBOnly(r, sess, []string{"demo"})
-chiu.CrudDBExcept(r, sess, []string{"demo"})
+chie.CrudDBAll(r, sess)
+chie.CrudDBOnly(r, sess, []string{"demo"})
+chie.CrudDBExcept(r, sess, []string{"demo"})
 // for _, table := range tables {
 //    chiu.CrudTable(r, sess, table, "/"+table)
 // }
 ```
 
-`chiu.FileServer`
+`chie.FileServer`
 ```go
 workDir, _ := os.Getwd()
 filesDir := filepath.Join(workDir, "files")
-chiu.FileServer(r, "/files", http.Dir(filesDir))
+chie.FileServer(r, "/files", http.Dir(filesDir))
 
 // same as
-chiu.ServeStatic(r, "/files", "files")
+chie.ServeStatic(r, "/files", "files")
 ```
 
 

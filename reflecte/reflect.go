@@ -1,4 +1,4 @@
-package reflectu
+package reflecte
 
 import (
 	"errors"

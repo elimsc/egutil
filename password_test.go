@@ -1,15 +1,15 @@
-package egu_test
+package goe_test
 
 import (
 	"testing"
 
-	"github.com/elimsc/egu"
+	"github.com/elimsc/goe"
 )
 
 func TestPasswordUtil(t *testing.T) {
 	password := "123456"
-	hashedPassword, _ := egu.HashPassword(password)
-	if !egu.CheckPasswordHash(password, hashedPassword) {
+	hashedPassword, _ := goe.HashPassword(password)
+	if !goe.CheckPasswordHash(password, hashedPassword) {
 		t.Errorf("TestPasswordUtil() failed")
 	}
 }
